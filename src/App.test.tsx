@@ -57,3 +57,47 @@ test("renders segwit bitcoin address when seed and paths are inputed", () => {
   // segwit addresses must all start with `bc1`
   expect(card.textContent?.trim().substring(0, 3)).toBe("bc1");
 });
+
+test("renders P2SH bitcoin address when public keys are inputed", () => {
+  const allP2shInput = screen.getAllByTestId("public-key-address-input");
+
+  fireEvent.change(allP2shInput[0], {
+    target: {
+      value:
+        "026477115981fe981a6918a6297d9803c4dc04f328f22041bedff886bbc2962e01",
+    },
+  });
+  const btn = screen.getByTestId("p2sh-address-btn-generate");
+  fireEvent.click(btn);
+  const card = screen.getByTestId("p2sh-address-generate-card");
+  const cardTextLength = card.textContent?.trim().split(" ").length;
+  expect(cardTextLength).toBe(1);
+  // p2sh addresses starts with `3`
+  expect(card.textContent?.trim().substring(0, 1)).toBe("3");
+});
+
+test("renders P2SH bitcoin address when user adds multiple public keys", () => {
+  const selectInput = screen.getByTestId("p2sh-address-m");
+  fireEvent.change(selectInput, { target: { value: 2 } });
+  const allP2shInput = screen.getAllByTestId("public-key-address-input");
+
+  fireEvent.change(allP2shInput[0], {
+    target: {
+      value:
+        "026477115981fe981a6918a6297d9803c4dc04f328f22041bedff886bbc2962e01",
+    },
+  });
+  fireEvent.change(allP2shInput[1], {
+    target: {
+      value:
+        "02c96db2302d19b43d4c69368babace7854cc84eb9e061cde51cfa77ca4a22b8b9",
+    },
+  });
+  const btn = screen.getByTestId("p2sh-address-btn-generate");
+  fireEvent.click(btn);
+  const card = screen.getByTestId("p2sh-address-generate-card");
+  const cardTextLength = card.textContent?.trim().split(" ").length;
+  expect(cardTextLength).toBe(1);
+  // p2sh addresses starts with `3`
+  expect(card.textContent?.trim().substring(0, 1)).toBe("3");
+});
