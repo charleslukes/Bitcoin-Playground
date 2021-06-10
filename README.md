@@ -2,13 +2,21 @@
 
 A Simple Easy to use Playground for Bitcoin
 
-### `Features`
+### Features
 
 - Generates random mnemonic words
 - Generates Hierarchical Deterministic (HD) Segregated Witness (SegWit) Bitcoin Address
 - Generates Multi Signature Pay To Script Bitcoin Address
 
-### `Usage`
+### Usage
+
+clone the repository using
+
+```bash
+   git clone https://github.com/charleslukes/Bitcoin-Playground.git
+```
+
+Then install all dependencies
 
 ```bash
    npm i
@@ -33,6 +41,6 @@ Test
 
 Launches the test runner in the interactive watch mode.\
 
-### `Major Library`
+### Major Library
 
 [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
