@@ -211,7 +211,7 @@ function App() {
           </Col>
           <Col sm={12} md={6}>
             <Form.Label>Enter number of public keys (m) </Form.Label>
-            <Form.Control as="select" name="m">
+            <Form.Control as="select" name="m" data-testid="p2sh-address-m">
               {generateSelectDropdown()}
             </Form.Control>
             <Form.Text className="text-muted">
@@ -231,6 +231,7 @@ function App() {
                 </Form.Text>
                 {[...Array(multSign.m)].map((_data, index) => (
                   <Form.Control
+                    data-testid="public-key-address-input"
                     className="my-2"
                     type="text"
                     placeholder="Enter hex public key"
@@ -242,6 +243,7 @@ function App() {
                   variant="outline-primary"
                   className="my-3"
                   onClick={handleGenerateP2SHAddress}
+                  data-testid="p2sh-address-btn-generate"
                   disabled={!enableP2SHAddressBtn}
                 >
                   Generate Address
@@ -251,7 +253,10 @@ function App() {
           </Col>
         </Row>
         <Row>
-          <CopyCard cardText={generatedP2SHBitcoinAddress} />
+          <CopyCard
+            cardText={generatedP2SHBitcoinAddress}
+            dataTestid={"p2sh-address-generate-card"}
+          />
         </Row>
       </div>
     </Container>
